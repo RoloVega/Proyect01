@@ -16,12 +16,7 @@ class App:
         master.configure(bg="gray25")
         master.protocol("WM_DELETE_WINDOW", self.on_closing)
         self.data_with_parity = []
-        Fibonacci = Toplevel()
-        Fibonacci.title("Tarea Corta 1: Fibonacci")
-        Fibonacci.geometry("910x600")
-        Fibonacci.withdraw()
     
-        Fibonacci.resizable(False, False)
 
         # Scroll
         self.canvasScroll = tk.Canvas(master, bg="gray25")
@@ -36,10 +31,6 @@ class App:
 
         self.basesFrame = tk.Frame(self.mainFrame, bg="gray15")
         self.basesFrame.pack(side=tk.TOP, fill=tk.X, padx=5, pady=5)
-
-
-        self.parityFrame = tk.Frame(self.mainFrame, bg="gray15")
-        self.parityFrame.pack(side=tk.TOP, fill=tk.X, padx=5, pady=5)
 
 
         self.canvasScroll.create_window((0, 0), window=self.mainFrame, anchor="nw")
@@ -66,21 +57,20 @@ class App:
         ).grid(row=0, column=0, padx=5, sticky=tk.W)
 
 
-
-
        # Entry
         entry = tk.Entry(
             self.basesFrame, bg="gray15", fg="gray70", font=("Arial Black", 12)
         )
         entry.grid(row=0, column=1, sticky=tk.W)
         
-       
 
 
         # Funcion del boton update
         def update_button():
             input = entry.get()
+#            mostrar(input)
             print("\si")
+            start=time.time()
             #valor = tk.Label(mostrar)
             
         self.update = tk.Button(
@@ -94,7 +84,7 @@ class App:
         self.update.grid(row=1, column=2, padx=10, sticky=tk.W)
         
 
-
+    end=time.time()
     def on_closing(self):
         root.destroy()
 
@@ -104,4 +94,3 @@ if __name__ == "__main__":
     root = tk.Tk()
     app = App(root)
     root.mainloop()
-
