@@ -1,3 +1,4 @@
+import time
 # Multiplica 2 mintérminos
 def mul(x,y): 
     res = []
@@ -54,12 +55,12 @@ def recorta(x):
 
 # Encontrar mintérminos repetidos
 def buscaMinterminos(a): 
-    gaps = a.count('-')
-    if gaps == 0:
+    grup = a.count('-')
+    if grup == 0:
         return [str(int(a,2))]
-    x = [bin(i)[2:].zfill(gaps) for i in range(pow(2,gaps))]
+    x = [bin(i)[2:].zfill(grup) for i in range(pow(2,grup))]
     temp = []
-    for i in range(pow(2,gaps)):
+    for i in range(pow(2,grup)):
         temp2,ind = a[:],-1
         for j in x[0]:
             if ind != -1:
@@ -98,6 +99,8 @@ minterminos = mint
 minterminos.sort()
 size = len(bin(minterminos[-1]))-2
 grupos,all_pi = {},set()
+#Tiempo
+start=time.time()
 
 # Comenzamos la primera agrupación
 for minterm in minterminos:
@@ -185,5 +188,6 @@ else:
     resultado_final = [min(P[0],key=len)] 
     resultado_final.extend(BuscarVariables(i) for i in IPE) 
 print('\nSolución: Y = '+' + '.join(''.join(i) for i in resultado_final))
-
+end=time.time()
+print ('duracion del programa',end-start,'s')
 input("\nPresione enter para salir ")
