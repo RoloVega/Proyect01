@@ -129,7 +129,7 @@ for i in sorted(grupos.keys()):
 # Crear tablas y encontrar los implicantes primos 
 while True:
     implprimos = grupos.copy()
-    grupos,m,marcados,debo_parar = {},0,set(),True
+    grupos,m,marcados,parar = {},0,set(),True
     l = sorted(list(implprimos.keys()))
     for i in range(len(l)-1):
         for j in implprimos[l[i]]: 
@@ -140,14 +140,14 @@ while True:
                         grupos[m].append(j[:res[1]]+'-'+j[res[1]+1:]) if j[:res[1]]+'-'+j[res[1]+1:] not in grupos[m] else None
                     except KeyError:
                         grupos[m] = [j[:res[1]]+'-'+j[res[1]+1:]]
-                    debo_parar = False
+                    parar = False
                     marcados.add(j) 
                     marcados.add(k) 
         m += 1
     desmarcados_local = set(recorta(implprimos)).difference(marcados) 
     all_pi = all_pi.union(desmarcados_local)
-    print("Elementos desmarcados(Implicantes Primos) de la tabla:",None if len(desmarcados_local)==0 else ', '.join(desmarcados_local)) 
-    if debo_parar:
+    print("Implicantes Primos de la tabla:",None if len(desmarcados_local)==0 else ', '.join(desmarcados_local)) 
+    if parar:
         print("\n\nAll Implicantes Primos: ",None if len(all_pi)==0 else ', '.join(all_pi))
         break
     print("\n\n\n\nNúmero de Gpo\tMintérminos\t\tExpresión en BCD\n%s"%('='*60))
@@ -190,4 +190,3 @@ else:
 print('\nSolución: Y = '+' + '.join(''.join(i) for i in resultado_final))
 end=time.time()
 print ('duracion del programa',end-start,'s')
-input("\nPresione enter para salir ")
